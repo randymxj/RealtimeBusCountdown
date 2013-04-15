@@ -133,7 +133,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0" >
 
         <LinearLayout
         android:id="@+id/Linear_Time"
@@ -149,5 +150,14 @@
 		</LinearLayout>
 	
     </ScrollView>
+    
+    <LinearLayout
+        android:id="@+id/Linear_Banner"
+  		android:layout_width="match_parent"
+  		android:layout_height="50dp"
+  		android:gravity="center|center_horizontal|center_vertical" 
+		android:orientation="vertical" >
+        
+	</LinearLayout>
             
 </LinearLayout >

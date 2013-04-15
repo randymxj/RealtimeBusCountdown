@@ -133,7 +133,7 @@ public class Parser extends Thread
 	
 	public Document loadXML( String address )
 	{
-		error_code = -1;
+		error_code = 0;
 		
 		try 
 		{
@@ -195,7 +195,10 @@ public class Parser extends Thread
 		String path = "http://webservices.nextbus.com/service/publicXMLFeed?command=agencyList";
 		Document document = loadXML( path );
 		
-		error_code = 0;
+		if( document == null )
+		{
+			return;
+		}
 		
 		Node body = document.getDocumentElement();
 		NodeList body_item = body.getChildNodes();
@@ -242,10 +245,14 @@ public class Parser extends Thread
 	public void parserRoute()
 	{
 		Routes.clear();
+		
 		String path = "http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=" + routeTag;
 		Document document = loadXML( path );
 		
-		error_code = 0;
+		if( document == null )
+		{
+			return;
+		}
 		
 		Node body = document.getDocumentElement();
 		NodeList body_item = body.getChildNodes();
@@ -283,10 +290,14 @@ public class Parser extends Thread
 	{
 		Stops.clear();
 		Directions.clear();
+		
 		String path = "http://webservices.nextbus.com/service/publicXMLFeed?command=routeConfig&a=" + agencyTag + "&r=" + routeTag;
 		Document document = loadXML( path );
-		
-		error_code = 0;
+
+		if( document == null )
+		{
+			return;
+		}
 		
 		Node body = document.getDocumentElement();
 		NodeList body_item = body.getChildNodes();
@@ -437,11 +448,15 @@ public class Parser extends Thread
 	public void parserTime()
 	{
 		Routes.clear();
+		
 		String path = "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=" + 
 					  agencyTag + "&r=" + routeTag + "&s=" + stopTag;
 		Document document = loadXML( path );
-		
-		error_code = 0;
+
+		if( document == null )
+		{
+			return;
+		}
 		
 		Node body = document.getDocumentElement();
 		NodeList body_item = body.getChildNodes();

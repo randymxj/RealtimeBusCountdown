@@ -29,14 +29,22 @@ public class TimeNode
 	public void setButton( TextView t )
 	{
 		tv_text = t;
-		tv_text.setText(seconds);
+		tv_text.setText("~");
 	}
 	
 	public void decreaseTime()
 	{
 		int s = Integer.valueOf(seconds);
+		
+		int hh = s / 3600;
+		int mm = ( s - hh * 3600 ) / 60;
+		int ss = s - hh * 3600 - mm * 60;
+		
+		tv_text.setText( String.valueOf(hh) + " hrs " + 
+						 String.valueOf(mm) + " mins " + 
+						 String.valueOf(ss) + " secs");
+		
 		s--;
 		seconds = String.valueOf(s);
-		tv_text.setText(seconds);
 	}
 }
