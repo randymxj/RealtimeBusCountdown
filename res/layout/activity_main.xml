@@ -3,159 +3,151 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:background="#FFFFFF"
     android:orientation="vertical" >
-    
-    <Button
-        android:id="@+id/BLabel_Debug"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#00ABA9"
-        android:text="~~~"
-        android:textColor="#FFFFFF"
-        android:textSize="20dp" />
-    
+ 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp" 
-    	android:orientation="horizontal"  >
-    	
-	    <Button
-	        android:id="@+id/BLabel_Agency"
-	        android:layout_width="fill_parent"
-	        android:layout_weight="3" 
-	        android:layout_height="fill_parent"
-	        android:background="#1BA1E2"
-	        android:text="Agency"
-	        android:textColor="#FFFFFF"
-	        android:textSize="20dp" />
-    
-	    <Spinner
-	        android:id="@+id/spinner_agencies"
-	        android:layout_width="fill_parent"
-	        android:layout_weight="1" 
-	        android:layout_height="fill_parent" />
-    
-    </LinearLayout>
-    
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="50dp" 
-	  	android:orientation="horizontal" >
-    
-	    <Button
-	        android:id="@+id/BLabel_Route"
-	        android:layout_width="fill_parent"
-	        android:layout_weight="3" 
-	        android:layout_height="fill_parent"
-	        android:background="#1BA1E2"
-	        android:text="Route"
-	        android:textColor="#FFFFFF"
-	        android:textSize="20dp" />
-	    
-	    <Spinner
-        android:id="@+id/spinner_routes"
-        android:layout_width="fill_parent"
-        android:layout_weight="1" 
-        android:layout_height="fill_parent" />
-    
-    </LinearLayout>
-    
-    <Button
-        android:id="@+id/BLabel_Inbound"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#1BA1E2"
-        android:text="Inbound"
-        android:textColor="#FFFFFF"
-        android:textSize="15dp" />
-    
-    <Spinner
-        android:id="@+id/spinner_inbound"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    
-    <Button
-        android:id="@+id/BLabel_Outbound"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#1BA1E2"
-        android:text="Outbound"
-        android:textColor="#FFFFFF"
-        android:textSize="15dp" />
-    
-    <Spinner
-        android:id="@+id/spinner_outbound"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    
-    <LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="90dp"
-	  	android:orientation="horizontal" >
-	    
-    	<Button
-        	android:id="@+id/BLabel_BUS"
-	        android:layout_width="fill_parent"
-	        android:layout_weight="2" 
-	        android:layout_height="fill_parent"
-	        android:background="#1BA1E2"
-	        android:text="Realtime BUS track"
-	        android:textColor="#FFFFFF"
-	        android:textSize="20dp" />
-    
-    	<LinearLayout
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="fill_parent"
-	    	android:layout_weight="1"  
-	  		android:orientation="vertical" >
-	  	
-    		<Button
-	        	android:id="@+id/BLabel_BUS0"
-	        	android:layout_width="match_parent"
-	        	android:layout_height="30dp"
-	        	android:background="#00ABA9"
-	        	android:text="BUS0"
-	        	android:textColor="#FFFFFF"
-	        	android:textSize="20dp" />
-    
-    		<Button
-	        	android:id="@+id/BLabel_BUS1"
-	        	android:layout_width="match_parent"
-	        	android:layout_height="30dp"
-	        	android:background="#00ABA9"
-	        	android:text="BUS0"
-	       		android:textColor="#FFFFFF"
-	        	android:textSize="20dp" />
-    
-    		<Button
-	        	android:id="@+id/BLabel_BUS2"
-	        	android:layout_width="match_parent"
-	        	android:layout_height="30dp"
-	        	android:background="#00ABA9"
-	        	android:text="BUS0"
-	        	android:textColor="#FFFFFF"
-	        	android:textSize="20dp" />
-    
-    		</LinearLayout >
-    		
-    </LinearLayout >
-    
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-		android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center|center_horizontal|center_vertical" >
-              
-  			<com.google.ads.AdView android:id="@+id/adView"
-  			    android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ads:adUnitId="a1508ae1594d2fd"
-                ads:adSize="BANNER"
-                ads:loadAdOnCreate="true"/>
-  			
-	</LinearLayout>   
+        android:id="@+id/Linear_Setting_Agency"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content" 
+   		android:paddingLeft="20dp"
+       	android:paddingRight="20dp"
+       	android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+		android:orientation="vertical" 
+		android:background="@drawable/button_bg" 
+		android:clickable="true" >
 
+        <TextView
+           	android:id="@+id/TextView_Setting_Agency"
+           	android:layout_width="match_parent"
+           	android:layout_height="wrap_content"
+			android:textSize="20sp" 
+			android:text = "Select Agency" />
+        
+		<TextView
+            android:id="@+id/TextView_Setting_Agency_Attach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="Please select trasportation provider" />
+            
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/Linear_Setting_Route"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content" 
+   		android:paddingLeft="20dp"
+       	android:paddingRight="20dp"
+       	android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+		android:orientation="vertical" 
+		android:background="@drawable/button_bg" 
+		android:clickable="true" >
+
+        <TextView
+           	android:id="@+id/TextView_Setting_Route"
+           	android:layout_width="match_parent"
+           	android:layout_height="wrap_content"
+			android:textSize="20sp" 
+			android:text = "Select Route" />
+        
+		<TextView
+            android:id="@+id/TextView_Setting_Route_Attach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="Please select route" />
+            
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/Linear_Setting_Direction"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content" 
+   		android:paddingLeft="20dp"
+       	android:paddingRight="20dp"
+       	android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+		android:orientation="vertical" 
+		android:background="@drawable/button_bg" 
+		android:clickable="true" >
+
+        <TextView
+           	android:id="@+id/TextView_Setting_Direction"
+           	android:layout_width="match_parent"
+           	android:layout_height="wrap_content"
+			android:textSize="20sp" 
+			android:text = "Select direction" />
+        
+		<TextView
+            android:id="@+id/TextView_Setting_Direction_Attach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="Please select direction" />
+		
+		<TextView
+            android:id="@+id/TextView_Setting_Direction_From"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="From" />
+		
+		<TextView
+            android:id="@+id/TextView_Setting_Direction_To"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="To" />
+            
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/Linear_Setting_Stop"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content" 
+   		android:paddingLeft="20dp"
+       	android:paddingRight="20dp"
+       	android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+		android:orientation="vertical" 
+		android:background="@drawable/button_bg" 
+		android:clickable="true" >
+
+        <TextView
+           	android:id="@+id/TextView_Setting_Stop"
+           	android:layout_width="match_parent"
+           	android:layout_height="wrap_content"
+			android:textSize="20sp" 
+			android:text = "Select stop" />
+        
+		<TextView
+            android:id="@+id/TextView_Setting_Stop_Attach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="Please select stop" />
+            
+	</LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+        android:id="@+id/Linear_Time"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content"
+   		android:paddingLeft="0dp"
+       	android:paddingRight="0dp"
+       	android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+		android:orientation="vertical" 
+		android:background="@drawable/button_bg" >
+	
+		</LinearLayout>
+	
+    </ScrollView>
+            
 </LinearLayout >

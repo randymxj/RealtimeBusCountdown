@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"    
+    tools:context=".BeagleRSS" >
+    
+    <LinearLayout
+        android:id="@+id/Linear_Select_Route_Blank"
+  		android:layout_width="match_parent"
+  		android:layout_height="wrap_content" 
+		android:orientation="vertical" >
+	    	
+	    	<LinearLayout
+		       	android:layout_width="match_parent"
+		        android:layout_height="100dp" 
+		    	android:orientation="vertical" />
+		    	
+	        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+	            
+	        <TextView
+                android:id="@+id/TextView_Select_route_Blank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center" />
+     
+	</LinearLayout>
+    
+    <ScrollView
+        android:id="@+id/Scroll_Route_List"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" 
+        android:layout_weight = "1"
+    	android:orientation="vertical" >
+	    	
+        <LinearLayout
+            android:id="@+id/Linear_Route_List"
+      		android:layout_width="match_parent"
+      		android:layout_height="match_parent" 
+  			android:orientation="vertical"
+  			android:gravity="center_horizontal" >
+  	
+        </LinearLayout>
+	        
+    </ScrollView>
+
+</LinearLayout>
