@@ -27,43 +27,34 @@ public final class R {
         public static final int ic_launcher=0x7f020005;
     }
     public static final class id {
-        public static final int Linear_Agency_List=0x7f080013;
-        public static final int Linear_Banner=0x7f08000f;
-        public static final int Linear_Direction_List=0x7f080017;
-        public static final int Linear_Route_List=0x7f08001b;
-        public static final int Linear_Select_Agency_Blank=0x7f080010;
-        public static final int Linear_Select_Direction_Blank=0x7f080014;
-        public static final int Linear_Select_Route_Blank=0x7f080018;
-        public static final int Linear_Select_Stop_Blank=0x7f08001c;
-        public static final int Linear_Setting_Agency=0x7f080000;
-        public static final int Linear_Setting_Direction=0x7f080006;
-        public static final int Linear_Setting_Route=0x7f080003;
-        public static final int Linear_Setting_Stop=0x7f08000b;
-        public static final int Linear_Stop_List=0x7f08001f;
-        public static final int Linear_Time=0x7f08000e;
-        public static final int Module_Icon_Button=0x7f080020;
-        public static final int Scroll_Agency_List=0x7f080012;
-        public static final int Scroll_Direction_List=0x7f080016;
-        public static final int Scroll_Route_List=0x7f08001a;
-        public static final int Scroll_Stop_List=0x7f08001e;
-        public static final int TextView_Select_Agency_Blank=0x7f080011;
-        public static final int TextView_Select_Direction_Blank=0x7f080015;
-        public static final int TextView_Select_Stop_Blank=0x7f08001d;
-        public static final int TextView_Select_route_Blank=0x7f080019;
-        public static final int TextView_Selector=0x7f080021;
-        public static final int TextView_Selector_From=0x7f080022;
-        public static final int TextView_Selector_To=0x7f080023;
-        public static final int TextView_Setting_Agency=0x7f080001;
-        public static final int TextView_Setting_Agency_Attach=0x7f080002;
-        public static final int TextView_Setting_Direction=0x7f080007;
-        public static final int TextView_Setting_Direction_Attach=0x7f080008;
-        public static final int TextView_Setting_Direction_From=0x7f080009;
-        public static final int TextView_Setting_Direction_To=0x7f08000a;
-        public static final int TextView_Setting_Route=0x7f080004;
-        public static final int TextView_Setting_Route_Attach=0x7f080005;
-        public static final int TextView_Setting_Stop=0x7f08000c;
-        public static final int TextView_Setting_Stop_Attach=0x7f08000d;
-        public static final int menu_settings=0x7f080024;
+        public static final int Linear_Agency_List=0x7f080005;
+        public static final int Linear_Banner=0x7f080001;
+        public static final int Linear_Direction_List=0x7f080009;
+        public static final int Linear_Route_List=0x7f08000d;
+        public static final int Linear_Select_Agency_Blank=0x7f080002;
+        public static final int Linear_Select_Direction_Blank=0x7f080006;
+        public static final int Linear_Select_Route_Blank=0x7f08000a;
+        public static final int Linear_Select_Stop_Blank=0x7f08000e;
+        public static final int Linear_Stop_List=0x7f080011;
+        public static final int Linear_Time=0x7f080000;
+        public static final int Module_Icon_Button=0x7f080012;
+        public static final int Scroll_Agency_List=0x7f080004;
+        public static final int Scroll_Direction_List=0x7f080008;
+        public static final int Scroll_Route_List=0x7f08000c;
+        public static final int Scroll_Stop_List=0x7f080010;
+        public static final int TextView_All_Agent=0x7f080014;
+        public static final int TextView_All_Direction=0x7f080015;
+        public static final int TextView_All_From=0x7f080016;
+        public static final int TextView_All_Stop=0x7f080018;
+        public static final int TextView_All_To=0x7f080017;
+        public static final int TextView_Select_Agency_Blank=0x7f080003;
+        public static final int TextView_Select_Direction_Blank=0x7f080007;
+        public static final int TextView_Select_Stop_Blank=0x7f08000f;
+        public static final int TextView_Select_route_Blank=0x7f08000b;
+        public static final int TextView_Selector=0x7f080013;
+        public static final int TextView_Selector_From=0x7f080019;
+        public static final int TextView_Selector_To=0x7f08001a;
+        public static final int menu_settings=0x7f08001b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -72,8 +63,9 @@ public final class R {
         public static final int activity_selectroute=0x7f030003;
         public static final int activity_selectstop=0x7f030004;
         public static final int button=0x7f030005;
-        public static final int button_direction=0x7f030006;
-        public static final int button_time=0x7f030007;
+        public static final int button_all=0x7f030006;
+        public static final int button_direction=0x7f030007;
+        public static final int button_time=0x7f030008;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Module_Icon_Button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:clickable="true" 
+    android:background="@drawable/button_bg" >
+    
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="1"
+	    android:orientation="vertical" >
+	    
+	    <TextView
+	        android:id="@+id/TextView_All_Agent"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:gravity="center_vertical|left"
+			android:textSize="20sp"
+			android:text="MBTA: 51" />
+	    
+	    <TextView
+	        android:id="@+id/TextView_All_Direction"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:gravity="center_vertical|left"
+			android:textSize="15sp"
+			android:text="Direction" />
+	    <TextView
+	        android:id="@+id/TextView_All_From"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:gravity="center_vertical|left"
+			android:textSize="15sp"
+			android:text="Origin" />
+	    <TextView
+	        android:id="@+id/TextView_All_To"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:gravity="center_vertical|left"
+			android:textSize="15sp" 
+			android:text="Destination" />
+	    <TextView
+	        android:id="@+id/TextView_All_Stop"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:gravity="center_vertical|left"
+			android:textSize="15sp" 
+			android:text="Stop" />
+    
+	</LinearLayout>
+	
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="5"
+	    android:orientation="vertical" >
+	    
+    </LinearLayout>
+    
+</LinearLayout>

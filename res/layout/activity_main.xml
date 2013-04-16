@@ -4,132 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:orientation="vertical" >
- 
-    <LinearLayout
-        android:id="@+id/Linear_Setting_Agency"
-   		android:layout_width="match_parent"
-   		android:layout_height="wrap_content" 
-   		android:paddingLeft="20dp"
-       	android:paddingRight="20dp"
-       	android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-		android:orientation="vertical" 
-		android:background="@drawable/button_bg" 
-		android:clickable="true" >
-
-        <TextView
-           	android:id="@+id/TextView_Setting_Agency"
-           	android:layout_width="match_parent"
-           	android:layout_height="wrap_content"
-			android:textSize="20sp" 
-			android:text = "Select Agency" />
-        
-		<TextView
-            android:id="@+id/TextView_Setting_Agency_Attach"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="Please select trasportation provider" />
-            
-	</LinearLayout>
-	
-    <LinearLayout
-        android:id="@+id/Linear_Setting_Route"
-   		android:layout_width="match_parent"
-   		android:layout_height="wrap_content" 
-   		android:paddingLeft="20dp"
-       	android:paddingRight="20dp"
-       	android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-		android:orientation="vertical" 
-		android:background="@drawable/button_bg" 
-		android:clickable="true" >
-
-        <TextView
-           	android:id="@+id/TextView_Setting_Route"
-           	android:layout_width="match_parent"
-           	android:layout_height="wrap_content"
-			android:textSize="20sp" 
-			android:text = "Select Route" />
-        
-		<TextView
-            android:id="@+id/TextView_Setting_Route_Attach"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="Please select route" />
-            
-	</LinearLayout>
-	
-    <LinearLayout
-        android:id="@+id/Linear_Setting_Direction"
-   		android:layout_width="match_parent"
-   		android:layout_height="wrap_content" 
-   		android:paddingLeft="20dp"
-       	android:paddingRight="20dp"
-       	android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-		android:orientation="vertical" 
-		android:background="@drawable/button_bg" 
-		android:clickable="true" >
-
-        <TextView
-           	android:id="@+id/TextView_Setting_Direction"
-           	android:layout_width="match_parent"
-           	android:layout_height="wrap_content"
-			android:textSize="20sp" 
-			android:text = "Select direction" />
-        
-		<TextView
-            android:id="@+id/TextView_Setting_Direction_Attach"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="Please select direction" />
-		
-		<TextView
-            android:id="@+id/TextView_Setting_Direction_From"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="From" />
-		
-		<TextView
-            android:id="@+id/TextView_Setting_Direction_To"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="To" />
-            
-	</LinearLayout>
-	
-    <LinearLayout
-        android:id="@+id/Linear_Setting_Stop"
-   		android:layout_width="match_parent"
-   		android:layout_height="wrap_content" 
-   		android:paddingLeft="20dp"
-       	android:paddingRight="20dp"
-       	android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-		android:orientation="vertical" 
-		android:background="@drawable/button_bg" 
-		android:clickable="true" >
-
-        <TextView
-           	android:id="@+id/TextView_Setting_Stop"
-           	android:layout_width="match_parent"
-           	android:layout_height="wrap_content"
-			android:textSize="20sp" 
-			android:text = "Select stop" />
-        
-		<TextView
-            android:id="@+id/TextView_Setting_Stop_Attach"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="Please select stop" />
-            
-	</LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -140,12 +14,7 @@
         android:id="@+id/Linear_Time"
    		android:layout_width="match_parent"
    		android:layout_height="wrap_content"
-   		android:paddingLeft="0dp"
-       	android:paddingRight="0dp"
-       	android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-		android:orientation="vertical" 
-		android:background="@drawable/button_bg" >
+		android:orientation="vertical" >
 	
 		</LinearLayout>
 	
