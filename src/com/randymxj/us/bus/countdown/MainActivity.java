@@ -41,6 +41,8 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends Activity implements OnClickListener 
 {
+	private int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+	
 	private LayoutInflater layoutInflater;
 	
 	private LinearLayout Linear_Setting_Agency;
@@ -151,6 +153,8 @@ public class MainActivity extends Activity implements OnClickListener
 			intent.putExtra("direction_tag", conf.d_tag);
 			intent.putExtra("direction_title", conf.d_title);
 			startActivityForResult(intent, 1);
+
+			startActivityForResult(intent, 1);
 		}
 		
 		Times.clear();
@@ -238,7 +242,7 @@ public class MainActivity extends Activity implements OnClickListener
 		
 		menu.removeGroup(0);
 		
-		//menu.add(Menu.NONE, Menu.FIRST + 0, 0, "test");	
+		//menu.add(Menu.NONE, Menu.FIRST + 0, 0, "CAO");	
 		
 		return true;
 	}
@@ -249,6 +253,7 @@ public class MainActivity extends Activity implements OnClickListener
 	{
 		if( item.getItemId() ==  (Menu.FIRST + 0) )
 		{
+			
 		}
 	        
 		return false;
@@ -278,11 +283,21 @@ public class MainActivity extends Activity implements OnClickListener
         	TextView_Setting_Stop_Attach.setText("Please select stop");
         	
         	Linear_Setting_Route.setClickable(true);
-        	Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg_light));
         	Linear_Setting_Direction.setClickable(false);
-        	Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg));
         	Linear_Setting_Stop.setClickable(false);
-        	Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	
+        	if( currentapiVersion >= 16 )
+        	{
+        		Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg_light));
+        		Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	}
+        	else
+        	{
+        		Linear_Setting_Route.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg_light));
+        		Linear_Setting_Direction.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Stop.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        	}
         	
         	// Go to Route
         	Intent intent = new Intent();
@@ -307,12 +322,22 @@ public class MainActivity extends Activity implements OnClickListener
         	TextView_Setting_Direction_To.setText("[To] ");
         	TextView_Setting_Stop_Attach.setText("Please select stop");
         	
-        	Linear_Setting_Route.setClickable(true);
-        	Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	Linear_Setting_Route.setClickable(true);    	
         	Linear_Setting_Direction.setClickable(true);
-        	Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg_light));
         	Linear_Setting_Stop.setClickable(false);
-        	Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	
+        	if( currentapiVersion >= 16 )
+        	{
+        		Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg_light));
+        		Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	}
+        	else
+        	{
+        		Linear_Setting_Route.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Direction.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg_light));
+        		Linear_Setting_Stop.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        	}
         	
         	// Go to Direction
         	Intent intent = new Intent();
@@ -340,11 +365,21 @@ public class MainActivity extends Activity implements OnClickListener
         	TextView_Setting_Stop_Attach.setText("Please select stop");
 
         	Linear_Setting_Route.setClickable(true);
-        	Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg));
         	Linear_Setting_Direction.setClickable(true);
-        	Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg));
         	Linear_Setting_Stop.setClickable(true);
-        	Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	
+        	if( currentapiVersion >= 16 )
+        	{
+        		Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	}
+        	else
+        	{
+        		Linear_Setting_Route.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Direction.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Stop.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        	}
         	
         	// Go to Stop
         	Intent intent = new Intent();
@@ -365,13 +400,27 @@ public class MainActivity extends Activity implements OnClickListener
         	
         	// Clear
         	Linear_Setting_Route.setClickable(true);
-        	Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg));
         	Linear_Setting_Direction.setClickable(true);
-        	Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg));
         	Linear_Setting_Stop.setClickable(true);
-        	Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	
+        	if( currentapiVersion >= 16 )
+        	{
+        		Linear_Setting_Route.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Direction.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Stop.setBackground(getResources().getDrawable(R.drawable.button_bg));
+        	}
+        	else
+        	{
+        		Linear_Setting_Route.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Direction.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        		Linear_Setting_Stop.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_bg));
+        	}
         	
         	// Setting finish
+        	startParser();
+        }
+        else if( resultCode == 20 )
+        {
         	startParser();
         }
         

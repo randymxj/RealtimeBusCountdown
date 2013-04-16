@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -113,5 +114,18 @@ public class SelectRouteActivity extends Activity implements OnClickListener
 			Linear_Route_List.addView(node.layout);
     	}
     }
+    
+    @Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if(keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			Intent result = new Intent();
+			setResult(20, result); 
+            finish();
+		}
+		
+		return super.onKeyDown(keyCode, event);
+	}
 
 }
