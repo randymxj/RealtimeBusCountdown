@@ -27,6 +27,8 @@ public class SelectDirectionActivity extends Activity implements OnClickListener
 	
 	private Parser XMLParser;
 	
+	String a_tag, a_title, r_tag, r_title;
+	
 	public ArrayList<DirectionNode> Directions = new ArrayList<DirectionNode>();
 	public ArrayList<StopNode> Stops = new ArrayList<StopNode>();
 
@@ -68,11 +70,11 @@ public class SelectDirectionActivity extends Activity implements OnClickListener
     		{
     			Intent result = new Intent();
     			setResult(12, result);
-    			result.putExtra("tag", node.tag);
-    			result.putExtra("title", node.title);
-    			result.putExtra("name", node.name);
-    			result.putExtra("from", node.from_node.title);
-    			result.putExtra("to", node.to_node.title);
+    			result.putExtra("d_tag", node.tag);
+    			result.putExtra("d_title", node.title);
+    			result.putExtra("d_name", node.name);
+    			result.putExtra("d_from", node.from_node.title);
+    			result.putExtra("d_to", node.to_node.title);
                 finish();
     		}
     	}
@@ -86,10 +88,10 @@ public class SelectDirectionActivity extends Activity implements OnClickListener
         
         // Get intent message
   		Intent intent = getIntent();
-  		String a_tag = intent.getStringExtra("agency_tag");
-  		String a_title = intent.getStringExtra("agency_title");
-  		String r_tag = intent.getStringExtra("route_tag");
-  		String r_title = intent.getStringExtra("route_title");
+  		a_tag = intent.getStringExtra("a_tag");
+  		a_title = intent.getStringExtra("a_title");
+  		r_tag = intent.getStringExtra("r_tag");
+  		r_title = intent.getStringExtra("r_title");
   		
   		layoutInflater = getLayoutInflater();
       		
@@ -137,18 +139,5 @@ public class SelectDirectionActivity extends Activity implements OnClickListener
     	
     	return null;
     }
-    
-    @Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)
-	{
-		if(keyCode == KeyEvent.KEYCODE_BACK)
-		{
-			Intent result = new Intent();
-			setResult(20, result); 
-            finish();
-		}
-		
-		return super.onKeyDown(keyCode, event);
-	}
     
 }

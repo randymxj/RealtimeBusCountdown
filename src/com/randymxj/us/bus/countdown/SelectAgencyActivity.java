@@ -65,8 +65,8 @@ public class SelectAgencyActivity extends Activity implements OnClickListener
     		{
     			Intent result = new Intent();
     			setResult(10, result);
-    			result.putExtra("tag", node.tag);
-    			result.putExtra("title", node.title);
+    			result.putExtra("a_tag", node.tag);
+    			result.putExtra("a_title", node.title);
     			result.putExtra("shortTitle", node.shortTitle);
     			result.putExtra("regionTitle", node.regionTitle);
                 finish();

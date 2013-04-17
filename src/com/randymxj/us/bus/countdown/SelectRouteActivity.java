@@ -27,6 +27,8 @@ public class SelectRouteActivity extends Activity implements OnClickListener
 	
 	private Parser XMLParser;
 	
+	String a_tag, a_title;
+	
 	ArrayList<RouteNode> Routes = new ArrayList<RouteNode>();
 		
 	public Handler mHandler = new Handler() 
@@ -65,8 +67,8 @@ public class SelectRouteActivity extends Activity implements OnClickListener
     		{
     			Intent result = new Intent();
     			setResult(11, result);
-    			result.putExtra("tag", node.tag);
-    			result.putExtra("title", node.title);
+    			result.putExtra("r_tag", node.tag);
+    			result.putExtra("r_title", node.title);
                 finish();
     		}
     	}
@@ -81,8 +83,8 @@ public class SelectRouteActivity extends Activity implements OnClickListener
         
         // Get intent message
  		Intent intent = getIntent();
- 		String tag = intent.getStringExtra("tag");
- 		String title = intent.getStringExtra("title");
+ 		a_tag = intent.getStringExtra("a_tag");
+ 		a_title = intent.getStringExtra("a_title");
  		
  		layoutInflater = getLayoutInflater();
      		
@@ -92,7 +94,7 @@ public class SelectRouteActivity extends Activity implements OnClickListener
  		Scroll_Route_List = (ScrollView)findViewById(R.id.Scroll_Agency_List);
  		Linear_Route_List = (LinearLayout)findViewById(R.id.Linear_Agency_List);
         
-        XMLParser = new Parser(this, tag);
+        XMLParser = new Parser(this, a_tag);
         XMLParser.start();
         
         setTitle("Select Route");
@@ -114,18 +116,5 @@ public class SelectRouteActivity extends Activity implements OnClickListener
 			Linear_Route_List.addView(node.layout);
     	}
     }
-    
-    @Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)
-	{
-		if(keyCode == KeyEvent.KEYCODE_BACK)
-		{
-			Intent result = new Intent();
-			setResult(20, result); 
-            finish();
-		}
-		
-		return super.onKeyDown(keyCode, event);
-	}
 
 }

@@ -11,7 +11,7 @@
         android:layout_weight="1.0" >
 
         <LinearLayout
-        android:id="@+id/Linear_Time"
+        android:id="@+id/Linear_Track"
    		android:layout_width="match_parent"
    		android:layout_height="wrap_content"
 		android:orientation="vertical" >

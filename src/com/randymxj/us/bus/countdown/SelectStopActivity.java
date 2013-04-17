@@ -26,9 +26,9 @@ public class SelectStopActivity extends Activity implements OnClickListener
 	
 	private Parser XMLParser;
 	
-	public ArrayList<StopNode> Stops = new ArrayList<StopNode>();
+	String a_tag, a_title, r_tag, r_title, d_tag, d_title, d_name, d_from, d_to;
 	
-	public String d_tag, d_title;
+	public ArrayList<StopNode> Stops = new ArrayList<StopNode>();
 
 	public Handler mHandler = new Handler() 
 	{  
@@ -93,10 +93,8 @@ public class SelectStopActivity extends Activity implements OnClickListener
     		{
     			Intent result = new Intent();
     			setResult(13, result);
-    			result.putExtra("tag", node.tag);
-    			result.putExtra("title", node.title);
-    			result.putExtra("lat", node.lat);
-    			result.putExtra("lon", node.lon);
+    			result.putExtra("s_tag", node.tag);
+    			result.putExtra("s_title", node.title);
                 finish();
     		}
     	}
@@ -110,12 +108,12 @@ public class SelectStopActivity extends Activity implements OnClickListener
         
         // Get intent message
   		Intent intent = getIntent();
-  		String a_tag = intent.getStringExtra("agency_tag");
-  		String a_title = intent.getStringExtra("agency_title");
-  		String r_tag = intent.getStringExtra("route_tag");
-  		String r_title = intent.getStringExtra("route_title");
-  		d_tag = intent.getStringExtra("direction_tag");
-  		d_title = intent.getStringExtra("direction_tag_title");
+  		a_tag = intent.getStringExtra("a_tag");
+  		a_title = intent.getStringExtra("a_title");
+  		r_tag = intent.getStringExtra("r_tag");
+  		r_title = intent.getStringExtra("r_title");
+  		d_tag = intent.getStringExtra("d_tag");
+  		d_title = intent.getStringExtra("d_title");
   		
   		layoutInflater = getLayoutInflater();
       		

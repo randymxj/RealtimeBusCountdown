@@ -46,6 +46,8 @@ public class Parser extends Thread
 	private MainActivity main_MainActivity = null;
 	private SelectDirectionActivity main_SelectDirectionActivity = null;
 	private SelectStopActivity main_SelectStopActivity = null;
+	
+	private TrackerNode main_TrackerNode = null;
 
 	private int file_size = 0;
 	
@@ -77,9 +79,10 @@ public class Parser extends Thread
 		work_type = 1;
 	}
 	
-	public Parser(MainActivity m, String a_tag, String r_tag, String s_tag) 
+	public Parser(MainActivity m, TrackerNode t, String a_tag, String r_tag, String s_tag) 
 	{
 		main_MainActivity = m;
+		main_TrackerNode = t;
 		agencyTag = a_tag;
 		routeTag = r_tag;
 		stopTag = s_tag;
@@ -117,7 +120,7 @@ public class Parser extends Thread
 		else if( work_type == 2 )
 		{
 			parserTime();			
-			main_MainActivity.mHandler.obtainMessage(1).sendToTarget();
+			main_TrackerNode.mHandler.obtainMessage(1).sendToTarget();
 		}
 		else if( work_type == 3 )
 		{

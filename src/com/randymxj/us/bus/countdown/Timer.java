@@ -2,11 +2,11 @@ package com.randymxj.us.bus.countdown;
 
 public class Timer extends Thread
 {
-	private MainActivity main;
+	private TrackerNode main;
 	
 	public boolean work = true;
 	
-	Timer(MainActivity m)
+	Timer(TrackerNode m)
 	{
 		main = m;
 	}

@@ -26,7 +26,7 @@ public class TimeNode
 		layout = l;
 	}
 	
-	public void setButton( TextView t )
+	public void setTextView( TextView t )
 	{
 		tv_text = t;
 		tv_text.setText("~");
