@@ -56,7 +56,7 @@ public class Config
 	        	
 	        	Element item = doc.createElement("item");
 	        	tracker.appendChild(item);
-	        	
+
 	        	// Agency
 	        	Element item_a_tag = doc.createElement("a_tag");
 	        	item_a_tag.setTextContent(node.a_tag);
@@ -104,6 +104,11 @@ public class Config
 	        	Element item_s_title = doc.createElement("s_title");
 	        	item_s_title.setTextContent(node.s_title);
 	        	item.appendChild(item_s_title);
+	        	
+	        	// Custom
+	        	Element item_c_title = doc.createElement("c_title");
+	        	item_c_title.setTextContent(node.c_title);
+	        	item.appendChild(item_c_title);
 	        	
 	        }
             
@@ -161,6 +166,7 @@ public class Config
 					String r_tag = "", r_title = "";
 					String d_tag = "", d_title = "", d_name = "", d_from = "", d_to = "";
 					String s_tag = "", s_title = "";
+					String c_title = "";
 					
 					for( int j = 0; j < item.getLength(); j++ )
 					{
@@ -209,13 +215,18 @@ public class Config
 						{
 							s_title = node.getTextContent();
 						}
+						else if( node.getNodeName().equalsIgnoreCase("c_title") )
+						{
+							c_title = node.getTextContent();
+						}
 						
 					}
 					
-					Trackers.add(new TrackerNode(a_tag, a_title,
+					Trackers.add( new TrackerNode(a_tag, a_title,
 							 r_tag, r_title,
 							 d_tag, d_title, d_name, d_from, d_to,
-							 s_tag, s_title));
+							 s_tag, s_title,
+							 c_title ));
 				} 	
 			}
 		} 

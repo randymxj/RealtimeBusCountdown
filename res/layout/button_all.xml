@@ -24,9 +24,23 @@
 	        android:paddingBottom="0dp"
 	        android:paddingLeft="0dp"
 	        android:paddingRight="0dp"
-	        android:gravity="center_vertical|left"
+	        android:gravity="center_vertical|center"
 			android:textSize="20sp"
+			android:textStyle="bold"
 			android:text="Agent: Route" />
+	    
+	    <TextView
+	        android:id="@+id/TextView_All_Stop"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="0dp"
+	        android:paddingBottom="0dp"
+	        android:paddingLeft="0dp"
+	        android:paddingRight="0dp"
+	        android:gravity="center_vertical|center"
+			android:textSize="15sp" 
+			android:textStyle="bold"
+			android:text="Stop" />
 	    
 	    <TextView
 	        android:id="@+id/TextView_All_Direction"
@@ -36,8 +50,9 @@
 	        android:paddingBottom="0dp"
 	        android:paddingLeft="0dp"
 	        android:paddingRight="0dp"
-	        android:gravity="center_vertical|left"
+	        android:gravity="center_vertical|center"
 			android:textSize="15sp"
+			android:textStyle="italic"
 			android:text="Direction" />
 	    <TextView
 	        android:id="@+id/TextView_All_From"
@@ -47,8 +62,9 @@
 	        android:paddingBottom="0dp"
 	        android:paddingLeft="0dp"
 	        android:paddingRight="0dp"
-	        android:gravity="center_vertical|left"
+	        android:gravity="center_vertical|center"
 			android:textSize="15sp"
+			android:textStyle="italic"
 			android:text="Origin" />
 	    <TextView
 	        android:id="@+id/TextView_All_To"
@@ -58,20 +74,10 @@
 	        android:paddingBottom="0dp"
 	        android:paddingLeft="0dp"
 	        android:paddingRight="0dp"
-	        android:gravity="center_vertical|left"
+	        android:gravity="center_vertical|center"
 			android:textSize="15sp" 
+			android:textStyle="italic"
 			android:text="Destination" />
-	    <TextView
-	        android:id="@+id/TextView_All_Stop"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:paddingTop="0dp"
-	        android:paddingBottom="0dp"
-	        android:paddingLeft="0dp"
-	        android:paddingRight="0dp"
-	        android:gravity="center_vertical|left"
-			android:textSize="15sp" 
-			android:text="Stop" />
     
 	</LinearLayout>
 	

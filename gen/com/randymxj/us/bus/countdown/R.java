@@ -44,10 +44,10 @@ public final class R {
         public static final int Scroll_Route_List=0x7f08000c;
         public static final int Scroll_Stop_List=0x7f080010;
         public static final int TextView_All_Agency=0x7f080014;
-        public static final int TextView_All_Direction=0x7f080015;
-        public static final int TextView_All_From=0x7f080016;
-        public static final int TextView_All_Stop=0x7f080018;
-        public static final int TextView_All_To=0x7f080017;
+        public static final int TextView_All_Direction=0x7f080016;
+        public static final int TextView_All_From=0x7f080017;
+        public static final int TextView_All_Stop=0x7f080015;
+        public static final int TextView_All_To=0x7f080018;
         public static final int TextView_Select_Agency_Blank=0x7f080003;
         public static final int TextView_Select_Direction_Blank=0x7f080007;
         public static final int TextView_Select_Stop_Blank=0x7f08000f;

@@ -2,11 +2,15 @@ package com.randymxj.us.bus.countdown;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
@@ -16,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +31,7 @@ import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
 
 
-public class MainActivity extends Activity implements OnClickListener, OnLongClickListener 
+public class MainActivity extends Activity implements OnClickListener, OnLongClickListener, DialogInterface.OnClickListener 
 {
 	private int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 	
@@ -36,6 +41,8 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	private LinearLayout Linear_Banner;
 	
 	private TrackerNode selected_item;
+	private int Dialog_type = 0;
+	private EditText EditText_dialog;
 	
 	private Parser XMLParser;
 	
@@ -66,6 +73,23 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     }; 
     
     @Override
+	public void onClick(DialogInterface dialog, int which) 
+    {
+    	if( Dialog_type == 1 )
+		{
+    		if(which == Dialog.BUTTON_POSITIVE)
+    		{
+    			selected_item.c_title = EditText_dialog.getText().toString();
+    			selected_item.tv_agent.setText(selected_item.c_title);
+    			
+    			conf.WriteTracker();
+    		}
+		}
+		
+		Dialog_type = 0;		
+	}
+    
+    @Override
 	public boolean onLongClick(View v)
     {
     	selected_item = null;
@@ -83,7 +107,6 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     @Override
 	public void onClick(View v) 
     {
-		
 	}
 
     @Override
@@ -119,7 +142,8 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		
 		menu.removeGroup(0);
 		
-		menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Add Track");	
+		menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Add a Bus/Stop");
+		menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Exit");	
 		
 		return true;
 	}
@@ -136,6 +160,15 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			
 			startActivityForResult(intent, 1);
 		}
+		else if( item.getItemId() ==  (Menu.FIRST + 1) )
+		{
+			for( int i = 0; i < conf.Trackers.size(); i++ )
+			{
+				TrackerNode node = conf.Trackers.get(i);
+				node.clean();
+			}
+            finish();
+		}
 	        
 		return false;
 	}
@@ -147,15 +180,31 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		if( selected_item != null )
 		{
 			menu.setHeaderTitle( selected_item.a_title + ": " +  selected_item.r_title );    
-			menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Delete");    
+			menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Rename");
+			menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Delete");
 		}
 	}
 	
 	@Override  
 	public boolean onContextItemSelected(MenuItem item) 
-	{  
+	{ 
 		if( item.getItemId() == ( Menu.FIRST + 0 ) )
 		{ 
+			// Rename group
+			Dialog_type = 1; // Type 1 Rename
+			EditText_dialog = new EditText(this);
+			EditText_dialog.setText(selected_item.c_title);
+			AlertDialog.Builder input = new AlertDialog.Builder(this);  
+			input.setTitle("Rename");
+			input.setIcon(android.R.drawable.ic_dialog_info);
+			input.setView(EditText_dialog);
+			input.setPositiveButton("Ok", this);
+			input.setNegativeButton("Cancel", null);
+			input.create().show();
+		}
+		else if( item.getItemId() == ( Menu.FIRST + 1 ) )
+		{ 
+			selected_item.clean();
 			Linear_Track.removeView(selected_item.layout);
 	    	conf.Trackers.remove(selected_item);
 	    	conf.WriteTracker();
@@ -224,14 +273,30 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
         	s_tag = data.getStringExtra("s_tag");
         	s_title = data.getStringExtra("s_title");
         	
-        	conf.Trackers.add(new TrackerNode(a_tag, a_title,
+        	TrackerNode node = new TrackerNode( a_tag, a_title,
 					 r_tag, r_title,
 					 d_tag, d_title, d_name, d_from, d_to,
-					 s_tag, s_title));
+					 s_tag, s_title, 
+					 a_title + ": " + r_title );
         	
+        	conf.Trackers.add( node );
         	conf.WriteTracker();
         	
-        	updateList();
+        	node.setLayout( (LinearLayout)layoutInflater.inflate(R.layout.button_all, null) );
+			node.setTimeLayout( (LinearLayout)node.layout.findViewById(R.id.Linear_Time) );
+			node.setTextView((TextView)node.layout.findViewById(R.id.TextView_All_Agency),
+							 (TextView)node.layout.findViewById(R.id.TextView_All_Direction),
+							 (TextView)node.layout.findViewById(R.id.TextView_All_From),
+							 (TextView)node.layout.findViewById(R.id.TextView_All_To),
+							 (TextView)node.layout.findViewById(R.id.TextView_All_Stop));		
+			node.layout.setOnClickListener(this);
+			node.layout.setOnLongClickListener(this);
+    		registerForContextMenu(node.layout);
+    		
+    		node.setActivity(this);
+    		node.loadTime();
+    		
+    		Linear_Track.addView(node.layout);
         }
         else if( resultCode == 20 )
         {
@@ -272,6 +337,11 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	{
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 		{
+			for( int i = 0; i < conf.Trackers.size(); i++ )
+			{
+				TrackerNode node = conf.Trackers.get(i);
+				node.clean();
+			}
             finish();
 		}
 		
@@ -284,6 +354,12 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		super.onStart();
 		// The rest of your onStart() code.
 		EasyTracker.getInstance().activityStart(this); // Add this method.
+	}
+	
+	@Override
+	public void onResume() 
+	{
+		super.onResume();
 	}
 
 	@Override

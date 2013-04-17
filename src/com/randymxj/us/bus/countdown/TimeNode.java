@@ -10,6 +10,8 @@ public class TimeNode
 	public String dirTag = "";
 	public String vehicle = "";
 	
+	public String time = "";
+	
 	public LinearLayout layout;
 	public TextView tv_text;
 	
@@ -19,6 +21,8 @@ public class TimeNode
 		seconds = inSeconds;
 		dirTag = inDirTag;
 		vehicle = inVehicle;
+		
+		setupTime();
 	}
 	
 	public void setLayout( LinearLayout l )
@@ -29,22 +33,37 @@ public class TimeNode
 	public void setTextView( TextView t )
 	{
 		tv_text = t;
-		tv_text.setText("~");
 	}
 	
 	public void decreaseTime()
-	{
+	{	
+		setupTime();
+		
+		if( tv_text != null )
+			tv_text.setText( time );
+		
 		int s = Integer.valueOf(seconds);
-		
-		int hh = s / 3600;
-		int mm = ( s - hh * 3600 ) / 60;
-		int ss = s - hh * 3600 - mm * 60;
-		
-		tv_text.setText( String.valueOf(hh) + " hrs " + 
-						 String.valueOf(mm) + " mins " + 
-						 String.valueOf(ss) + " secs");
-		
 		s--;
 		seconds = String.valueOf(s);
+	}
+	
+	public void setupTime()
+	{	
+		int s = Integer.valueOf(seconds);
+		
+		if( s >= 0 )
+		{
+			int hh = s / 3600;
+			int mm = ( s - hh * 3600 ) / 60;
+			int ss = s - hh * 3600 - mm * 60;
+			
+			time = String.valueOf(hh) + " hrs " + 
+				   String.valueOf(mm) + " mins " + 
+				   String.valueOf(ss) + " secs";
+		}
+		else
+		{
+			time = "Bus is running away...";
+		}
 	}
 }

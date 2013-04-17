@@ -160,7 +160,7 @@ public class Parser extends Thread
 	        	
 	        	if( file_size > ( xml_file.length - 64 ) )
 	        	{
-	        		error_code = 404;
+	        		error_code = 402;
 	        		break;
 	        	}
 	        }
