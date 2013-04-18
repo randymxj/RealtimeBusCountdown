@@ -6,14 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class SelectRouteActivity extends Activity implements OnClickListener 
 {
@@ -50,7 +60,7 @@ public class SelectRouteActivity extends Activity implements OnClickListener
 	            	}
 	            	break;  
 	            }
-	
+
 	            default:
 	            	break;
             }  
@@ -79,7 +89,7 @@ public class SelectRouteActivity extends Activity implements OnClickListener
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selectagency);
+        setContentView(R.layout.activity_selectroute);
         
         // Get intent message
  		Intent intent = getIntent();
@@ -88,15 +98,15 @@ public class SelectRouteActivity extends Activity implements OnClickListener
  		
  		layoutInflater = getLayoutInflater();
      		
- 		Linear_Select_Route_Blank = (LinearLayout)findViewById(R.id.Linear_Select_Agency_Blank);
- 		TextView_Select_Route_Blank = (TextView)findViewById(R.id.TextView_Select_Agency_Blank);
+ 		Linear_Select_Route_Blank = (LinearLayout)findViewById(R.id.Linear_Select_Route_Blank);
+ 		TextView_Select_Route_Blank = (TextView)findViewById(R.id.TextView_Select_Route_Blank);
     	
- 		Scroll_Route_List = (ScrollView)findViewById(R.id.Scroll_Agency_List);
- 		Linear_Route_List = (LinearLayout)findViewById(R.id.Linear_Agency_List);
+ 		Scroll_Route_List = (ScrollView)findViewById(R.id.Scroll_Route_List);
+ 		Linear_Route_List = (LinearLayout)findViewById(R.id.Linear_Route_List);
         
         XMLParser = new Parser(this, a_tag);
         XMLParser.start();
-        
+
         setTitle("Select Route");
     }
     
@@ -115,6 +125,7 @@ public class SelectRouteActivity extends Activity implements OnClickListener
 			node.layout.setOnClickListener(this);
 			Linear_Route_List.addView(node.layout);
     	}
+    	
     }
 
 }

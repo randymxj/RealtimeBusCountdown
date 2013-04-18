@@ -72,10 +72,10 @@ public class Parser extends Thread
 		work_type = 0;
 	}
 	
-	public Parser(SelectRouteActivity m, String tag) 
+	public Parser(SelectRouteActivity m, String a_tag) 
 	{
 		main_SelectRouteActivity = m;
-		routeTag = tag;
+		agencyTag = a_tag;
 		work_type = 1;
 	}
 	
@@ -249,7 +249,7 @@ public class Parser extends Thread
 	{
 		Routes.clear();
 		
-		String path = "http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=" + routeTag;
+		String path = "http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=" + agencyTag;
 		Document document = loadXML( path );
 		
 		if( document == null )

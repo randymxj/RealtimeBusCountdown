@@ -1,5 +1,9 @@
 package com.randymxj.us.bus.countdown;
 
+import com.randymxj.us.bus.countdown.R;
+import com.randymxj.us.bus.countdown.R.id;
+import com.randymxj.us.bus.countdown.R.layout;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;

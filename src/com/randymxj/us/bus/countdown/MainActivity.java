@@ -29,6 +29,10 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.randymxj.us.bus.countdown.R;
+import com.randymxj.us.bus.countdown.R.id;
+import com.randymxj.us.bus.countdown.R.layout;
+import com.randymxj.us.bus.countdown.R.menu;
 
 
 public class MainActivity extends Activity implements OnClickListener, OnLongClickListener, DialogInterface.OnClickListener 
@@ -107,12 +111,10 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     @Override
 	public void onClick(View v) 
     {
-    	/*
     	Intent intent = new Intent();
 		intent.setClass(MainActivity.this, DirectionMapActivity.class);
 
 		startActivityForResult(intent, 1);
-		*/
 	}
 
     @Override

@@ -17,7 +17,7 @@ public class DirectionMapActivity extends FragmentActivity
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.direction_map);
-        setUpMapIfNeeded();
+        //setUpMapIfNeeded();
     }
 
     @Override

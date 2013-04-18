@@ -2,6 +2,10 @@ package com.randymxj.us.bus.countdown;
 
 import java.util.ArrayList;
 
+import com.randymxj.us.bus.countdown.R;
+import com.randymxj.us.bus.countdown.R.id;
+import com.randymxj.us.bus.countdown.R.layout;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,5 +1,8 @@
 package com.randymxj.us.bus.countdown;
 
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,8 +15,7 @@ public class StopNode
 	public String lon = "";
 	public String stopid = "";
 	
-	public LinearLayout layout;
-	public TextView tv_text;
+	public Marker marker;
 	
 	StopNode( String inTag, String inTitle, String inLat, String inLon, String inStopid )
 	{
@@ -24,15 +26,9 @@ public class StopNode
 		stopid = inStopid;
 	}
 	
-	public void setLayout( LinearLayout l )
+	public void setMarker( Marker m )
 	{
-		layout = l;
-	}
-	
-	public void setButton( TextView t )
-	{
-		tv_text = t;
-		tv_text.setText(title);
+		marker = m;
 	}
 	
 }
