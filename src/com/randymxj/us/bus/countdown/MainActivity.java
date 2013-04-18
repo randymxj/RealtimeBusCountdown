@@ -107,6 +107,12 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     @Override
 	public void onClick(View v) 
     {
+    	/*
+    	Intent intent = new Intent();
+		intent.setClass(MainActivity.this, DirectionMapActivity.class);
+
+		startActivityForResult(intent, 1);
+		*/
 	}
 
     @Override
