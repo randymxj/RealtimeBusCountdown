@@ -2,16 +2,12 @@ package com.randymxj.us.bus.countdown;
 
 import java.util.ArrayList;
 
-import com.randymxj.us.bus.countdown.R;
-import com.randymxj.us.bus.countdown.R.id;
-import com.randymxj.us.bus.countdown.R.layout;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -113,10 +109,23 @@ public class SelectAgencyActivity extends Activity implements OnClickListener
     		AgencyNode node = Agencies.get(i);
 						
     		node.setLayout( (LinearLayout)layoutInflater.inflate(R.layout.button, null) );
-    		node.setButton((TextView)node.layout.findViewById(R.id.TextView_Selector));
+    		node.setButton((TextView)node.layout.findViewById(R.id.TextView_Button));
 			node.layout.setOnClickListener(this);
 			Linear_Agency_List.addView(node.layout);
     	}
     }
+    
+    @Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if(keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			Intent result = new Intent();
+			setResult(20, result); 
+            finish();
+		}
+		
+		return super.onKeyDown(keyCode, event);
+	}
 
 }

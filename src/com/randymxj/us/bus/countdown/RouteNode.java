@@ -1,6 +1,5 @@
 package com.randymxj.us.bus.countdown;
 
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

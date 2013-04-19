@@ -4,6 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:orientation="vertical" >
+    
+    <LinearLayout  
+        android:id="@+id/Linear_Fresh_Todo"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent" 
+    	android:orientation="vertical" >
+    
+	    <TextView
+	        android:id="@+id/TextView_Fresh_Todo"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:paddingTop="20dp"
+	        android:paddingBottom="20dp"
+	        android:paddingLeft="20dp"
+	        android:paddingRight="20dp"
+	        android:gravity="center_vertical|left"
+			android:textSize="20sp" />
+    
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

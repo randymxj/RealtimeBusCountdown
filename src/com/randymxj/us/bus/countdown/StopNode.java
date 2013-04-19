@@ -1,11 +1,6 @@
 package com.randymxj.us.bus.countdown;
 
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class StopNode 
 {

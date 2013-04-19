@@ -2,30 +2,17 @@ package com.randymxj.us.bus.countdown;
 
 import java.util.ArrayList;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.randymxj.us.bus.countdown.R;
-import com.randymxj.us.bus.countdown.R.id;
-import com.randymxj.us.bus.countdown.R.layout;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 public class SelectDirectionActivity extends Activity implements OnClickListener 
@@ -153,5 +140,18 @@ public class SelectDirectionActivity extends Activity implements OnClickListener
     	
     	return null;
     }
+    
+    @Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if(keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			Intent result = new Intent();
+			setResult(22, result); 
+            finish();
+		}
+		
+		return super.onKeyDown(keyCode, event);
+	}
     
 }

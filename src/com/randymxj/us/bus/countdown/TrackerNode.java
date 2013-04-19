@@ -1,16 +1,9 @@
 package com.randymxj.us.bus.countdown;
 
-import com.randymxj.us.bus.countdown.R;
-import com.randymxj.us.bus.countdown.R.id;
-import com.randymxj.us.bus.countdown.R.layout;
-
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TrackerNode 
 {
@@ -53,8 +46,8 @@ public class TrackerNode
 	            		
 	            		if( XMLParser.Times.size() > 0 )
 	            		{
-	            			String text = r_title + ": " + XMLParser.Times.get(0).time;
-	            			Toast.makeText(main.getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+	            			//String text = r_title + ": " + XMLParser.Times.get(0).time;
+	            			//Toast.makeText(main.getApplicationContext(), text, Toast.LENGTH_SHORT).show();
 	            		}
 	            		else
 	            		{
@@ -180,6 +173,10 @@ public class TrackerNode
 	public void clean()
 	{
 		timer.work = false;
-		timer.interrupt();
+	}
+	
+	public void setRefreshTime(int t)
+	{
+		timer.refresh_time = t;
 	}
 }

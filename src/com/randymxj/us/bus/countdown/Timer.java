@@ -5,6 +5,7 @@ public class Timer extends Thread
 	private TrackerNode main;
 	
 	public boolean work = true;
+	public int refresh_time = 30;
 	
 	Timer(TrackerNode m)
 	{
@@ -21,7 +22,7 @@ public class Timer extends Thread
 			{
 				count++;
 				
-				if( count == 30 )
+				if( count == refresh_time )
 				{
 					count = 0;
 					main.mHandler.obtainMessage(11).sendToTarget();

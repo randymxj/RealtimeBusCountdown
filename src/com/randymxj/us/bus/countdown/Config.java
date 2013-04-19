@@ -28,6 +28,8 @@ public class Config
 {
 	private Activity main;
 	
+	public int refresh_time = 30;
+	
 	ArrayList<TrackerNode> Trackers = new ArrayList<TrackerNode>();
 	
 	public Config(Activity m)
@@ -256,13 +258,13 @@ public class Config
 	{
 		SharedPreferences preferences = main.getSharedPreferences("profile", Activity.MODE_PRIVATE);
 		
-		//preferences.edit().putString("a_tag", a_tag).commit();
+		preferences.edit().putInt("refresh_time", refresh_time).commit();
 	}
 	
 	public void ReadConfig()
 	{		
 		SharedPreferences preferences = main.getSharedPreferences("profile", Activity.MODE_PRIVATE);
 		
-		//a_tag = preferences.getString("a_tag", "");
+		refresh_time = preferences.getInt("refresh_time", 30);
 	}
 }

@@ -2,28 +2,13 @@ package com.randymxj.us.bus.countdown;
 
 import java.util.ArrayList;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
-import com.randymxj.us.bus.countdown.R;
-import com.randymxj.us.bus.countdown.R.id;
-import com.randymxj.us.bus.countdown.R.layout;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +17,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class SelectStopActivity extends FragmentActivity implements OnClickListener, OnMarkerClickListener 
 {
@@ -117,19 +112,35 @@ public class SelectStopActivity extends FragmentActivity implements OnClickListe
 	            			}
 	            		}
 	            		
-	            		// Add maker into the map
-	            		drawMarkerAndLine();
-	            		
-	            		// Calculate the zoom and center of the map
-	            		double ave_lat = ( MaxLat + MinLat )/2;
-	            		double ave_lon = ( MaxLon + MinLon )/2;
-	            		double ZoomLevel = 0;
-	            		if( ( MaxLat - MinLat ) > ( MaxLon - MinLon ) )
-	            			ZoomLevel = 10 - ( ( MaxLat - MinLat - 0.2 ) * 20 );
-	            		else
-	            			ZoomLevel = 10 - ( ( MaxLon - MinLon - 0.2 ) * 20 );
-	            		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(ave_lat, ave_lon), (float)ZoomLevel));
+	            		if( mMap != null )
+	            		{	
+		            		// Add maker into the map	            	
+		            		drawMarkerAndLine();
+		            		
+		            		// Calculate the zoom and center of the map
+		            		/*
+		            		double ave_lat = ( MaxLat + MinLat )/2;
+		            		double ave_lon = ( MaxLon + MinLon )/2;
+		            		double ZoomLevel = 0;
+		            		if( ( MaxLat - MinLat ) > ( MaxLon - MinLon ) )
+		            			ZoomLevel = 10 - ( ( MaxLat - MinLat - 0.2 ) * 20 );
+		            		else
+		            			ZoomLevel = 10 - ( ( MaxLon - MinLon - 0.2 ) * 20 );
+		            		*/
 
+		            		DisplayMetrics dm = new DisplayMetrics();
+		            		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		            		int widthPixels= dm.widthPixels;
+		            		
+		            		mMap.moveCamera( 
+		            				CameraUpdateFactory.newLatLngBounds(
+		            						new LatLngBounds( 
+		            								new LatLng(MinLat, MinLon), 
+		            								new LatLng(MaxLat, MaxLon) ), widthPixels, widthPixels, 100) );
+		            		
+		            		//mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(ave_lat, ave_lon), (float)ZoomLevel));
+	            		}
+	            		
 	            		updateList();
 	            	}
 	            	else
@@ -198,8 +209,11 @@ public class SelectStopActivity extends FragmentActivity implements OnClickListe
         if (mMap == null) 
         {
             mMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-            mMap.setMyLocationEnabled(true);
-            mMap.setOnMarkerClickListener(this);
+            if( mMap != null )
+            {
+            	mMap.setMyLocationEnabled(true);
+            	mMap.setOnMarkerClickListener(this);
+            }
         }
         
         XMLParser = new Parser(this, a_tag, r_tag);
@@ -231,11 +245,11 @@ public class SelectStopActivity extends FragmentActivity implements OnClickListe
             	{
             		button_ok.setEnabled(true);
             		
-            		if( !isSelectByMarker )
+            		if( !isSelectByMarker && mMap != null )
             		{
             			double Lat = Double.valueOf( Stops.get(arg2 - 1).lat );
             			double Lon = Double.valueOf( Stops.get(arg2 - 1).lon );
-            			mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(Lat, Lon))); 
+            			mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(Lat, Lon))); 
             			
             			Stops.get(arg2 - 1).marker.showInfoWindow();
             		
@@ -270,7 +284,7 @@ public class SelectStopActivity extends FragmentActivity implements OnClickListe
 		if(keyCode == KeyEvent.KEYCODE_BACK)
 		{
 			Intent result = new Intent();
-			setResult(20, result); 
+			setResult(23, result); 
             finish();
 		}
 		

@@ -8,9 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
@@ -23,58 +20,28 @@ import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
-import com.randymxj.us.bus.countdown.R;
-import com.randymxj.us.bus.countdown.R.id;
-import com.randymxj.us.bus.countdown.R.layout;
-import com.randymxj.us.bus.countdown.R.menu;
 
 
 public class MainActivity extends Activity implements OnClickListener, OnLongClickListener, DialogInterface.OnClickListener 
-{
-	private int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-	
+{	
 	public LayoutInflater layoutInflater;
 	
 	private LinearLayout Linear_Track;	
 	private LinearLayout Linear_Banner;
+	private LinearLayout Linear_Todo;
 	
 	private TrackerNode selected_item;
 	private int Dialog_type = 0;
 	private EditText EditText_dialog;
 	
-	private Parser XMLParser;
-	
 	String a_tag, a_title, r_tag, r_title, d_tag, d_title, d_name, d_from, d_to, s_tag, s_title;
 	
 	private Config conf = new Config(this);
-    
-	public Handler mHandler = new Handler() 
-	{  
-		public void handleMessage (Message msg) 
-        {  
-            switch(msg.what)
-            {  
-	            case 1:
-	            {
-	            	if( XMLParser.error_code == 0 )
-	            	{
-	            		Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
-	            	}
-	            	
-	            	break; 
-	            }
-	
-	            default:
-	            	break;
-            }  
-        }  
-    }; 
     
     @Override
 	public void onClick(DialogInterface dialog, int which) 
@@ -87,6 +54,19 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     			selected_item.tv_agent.setText(selected_item.c_title);
     			
     			conf.WriteTracker();
+    		}
+		}
+    	else if( Dialog_type == 2 )
+		{
+    		if(which == Dialog.BUTTON_POSITIVE)
+    		{
+    			conf.refresh_time = Integer.valueOf( EditText_dialog.getText().toString() );
+    			conf.WriteConfig();
+    			
+    			for( int i = 0; i < conf.Trackers.size(); i++ )
+    			{
+    				conf.Trackers.get(i).setRefreshTime(conf.refresh_time);
+    			}
     		}
 		}
 		
@@ -111,10 +91,14 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     @Override
 	public void onClick(View v) 
     {
-    	Intent intent = new Intent();
-		intent.setClass(MainActivity.this, DirectionMapActivity.class);
-
-		startActivityForResult(intent, 1);
+    	if( v == Linear_Todo )
+    	{
+    		// Go to Agency
+        	Intent intent = new Intent();
+			intent.setClass(MainActivity.this, SelectAgencyActivity.class);
+			
+			startActivityForResult(intent, 1);
+    	}
 	}
 
     @Override
@@ -131,12 +115,18 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
         Linear_Track = (LinearLayout)findViewById(R.id.Linear_Track);
     	Linear_Banner = (LinearLayout)findViewById(R.id.Linear_Banner);
     	
+    	Linear_Todo = (LinearLayout)findViewById(R.id.Linear_Fresh_Todo);
+		TextView tv = (TextView)findViewById(R.id.TextView_Fresh_Todo);
+		tv.setText("Press to add your first bus countdown");
+		Linear_Todo.setOnClickListener(this);
+		Linear_Todo.setVisibility(LinearLayout.GONE);
+    	
     	updateList();
     	
     	// Admob
 		AdView adView = new AdView(this, AdSize.BANNER, "a1508ae1594d2fd");
 		AdRequest adRequest = new AdRequest();
-		adRequest.addTestDevice("B0F76564FCF626C44ECD9339835DD7C4");
+		//adRequest.addTestDevice("B0F76564FCF626C44ECD9339835DD7C4");
 
 		Linear_Banner.addView(adView);
 		adView.loadAd(adRequest);
@@ -151,7 +141,8 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		menu.removeGroup(0);
 		
 		menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Add a Bus/Stop");
-		menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Exit");	
+		menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Configure refresh time");	
+		menu.add(Menu.NONE, Menu.FIRST + 2, 2, "Exit");	
 		
 		return true;
 	}
@@ -170,6 +161,20 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		}
 		else if( item.getItemId() ==  (Menu.FIRST + 1) )
 		{
+			// Rename group
+			Dialog_type = 2; // Type 2 Set refresh time
+			EditText_dialog = new EditText(this);
+			EditText_dialog.setText(String.valueOf(conf.refresh_time));
+			AlertDialog.Builder input = new AlertDialog.Builder(this);  
+			input.setTitle("Configure refresh time in second");
+			input.setIcon(android.R.drawable.ic_dialog_info);
+			input.setView(EditText_dialog);
+			input.setPositiveButton("Ok", this);
+			input.setNegativeButton("Cancel", null);
+			input.create().show();
+		}
+		else if( item.getItemId() ==  (Menu.FIRST + 2) )
+		{
 			for( int i = 0; i < conf.Trackers.size(); i++ )
 			{
 				TrackerNode node = conf.Trackers.get(i);
@@ -187,16 +192,21 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		super.onCreateContextMenu(menu, v, menuInfo);  
 		if( selected_item != null )
 		{
-			menu.setHeaderTitle( selected_item.a_title + ": " +  selected_item.r_title );    
-			menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Rename");
-			menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Delete");
+			menu.setHeaderTitle( selected_item.a_title + ": " +  selected_item.r_title );  
+			menu.add(Menu.NONE, Menu.FIRST + 0, 0, "Refresh");
+			menu.add(Menu.NONE, Menu.FIRST + 1, 1, "Rename");
+			menu.add(Menu.NONE, Menu.FIRST + 2, 2, "Delete");
 		}
 	}
 	
 	@Override  
 	public boolean onContextItemSelected(MenuItem item) 
-	{ 
+	{ 	
 		if( item.getItemId() == ( Menu.FIRST + 0 ) )
+		{
+			selected_item.loadTime();
+		}
+		if( item.getItemId() == ( Menu.FIRST + 1 ) )
 		{ 
 			// Rename group
 			Dialog_type = 1; // Type 1 Rename
@@ -210,12 +220,17 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			input.setNegativeButton("Cancel", null);
 			input.create().show();
 		}
-		else if( item.getItemId() == ( Menu.FIRST + 1 ) )
+		else if( item.getItemId() == ( Menu.FIRST + 2 ) )
 		{ 
 			selected_item.clean();
 			Linear_Track.removeView(selected_item.layout);
 	    	conf.Trackers.remove(selected_item);
 	    	conf.WriteTracker();
+	    	
+	    	if( conf.Trackers.size() == 0 )
+	    	{
+	    		Linear_Todo.setVisibility(LinearLayout.VISIBLE);
+	    	}
 		}
 		
 		return true;
@@ -277,6 +292,8 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			startActivityForResult(intent, 1);
         }else if( resultCode == 13 )
         {
+        	Linear_Todo.setVisibility(LinearLayout.GONE);
+        	
         	// Select Track
         	s_tag = data.getStringExtra("s_tag");
         	s_title = data.getStringExtra("s_title");
@@ -301,6 +318,8 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			node.layout.setOnLongClickListener(this);
     		registerForContextMenu(node.layout);
     		
+    		node.setRefreshTime(conf.refresh_time);
+    		
     		node.setActivity(this);
     		node.loadTime();
     		
@@ -308,7 +327,37 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
         }
         else if( resultCode == 20 )
         {
-        	// Nothing
+        	// Back from select agency
+        }
+        else if( resultCode == 21 )
+        {
+        	// Back from select route
+        	// Go to Agency
+        	Intent intent = new Intent();
+			intent.setClass(MainActivity.this, SelectAgencyActivity.class);			
+			startActivityForResult(intent, 1);
+        }
+        else if( resultCode == 22 )
+        {
+        	// Back from select direction
+        	// Go to Route
+        	Intent intent = new Intent();
+			intent.setClass(MainActivity.this, SelectRouteActivity.class);
+			intent.putExtra("a_tag", a_tag);
+			intent.putExtra("a_title", a_title);
+			startActivityForResult(intent, 1);
+        }
+        else if( resultCode == 23 )
+        {
+        	// Back from select stop
+        	// Go to Direction
+        	Intent intent = new Intent();
+			intent.setClass(MainActivity.this, SelectDirectionActivity.class);		
+			intent.putExtra("a_tag", a_tag);
+			intent.putExtra("a_title", a_title);
+			intent.putExtra("r_tag", r_tag);
+			intent.putExtra("r_title", r_title);
+			startActivityForResult(intent, 1);
         }
 
     }
@@ -317,26 +366,35 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     {
 		Linear_Track.removeAllViews();
 		
-		for( int i = 0; i < conf.Trackers.size(); i++ )
+		if( conf.Trackers.size() > 0 )
 		{
-			// Node Level
-			TrackerNode node = conf.Trackers.get(i);
-			
-			node.setLayout( (LinearLayout)layoutInflater.inflate(R.layout.button_all, null) );
-			node.setTimeLayout( (LinearLayout)node.layout.findViewById(R.id.Linear_Time) );
-			node.setTextView((TextView)node.layout.findViewById(R.id.TextView_All_Agency),
-							 (TextView)node.layout.findViewById(R.id.TextView_All_Direction),
-							 (TextView)node.layout.findViewById(R.id.TextView_All_From),
-							 (TextView)node.layout.findViewById(R.id.TextView_All_To),
-							 (TextView)node.layout.findViewById(R.id.TextView_All_Stop));		
-			node.layout.setOnClickListener(this);
-			node.layout.setOnLongClickListener(this);
-    		registerForContextMenu(node.layout);
-    		
-    		node.setActivity(this);
-    		node.loadTime();
-    		
-    		Linear_Track.addView(node.layout);
+			for( int i = 0; i < conf.Trackers.size(); i++ )
+			{
+				// Node Level
+				TrackerNode node = conf.Trackers.get(i);
+				
+				node.setLayout( (LinearLayout)layoutInflater.inflate(R.layout.button_all, null) );
+				node.setTimeLayout( (LinearLayout)node.layout.findViewById(R.id.Linear_Time) );
+				node.setTextView((TextView)node.layout.findViewById(R.id.TextView_All_Agency),
+								 (TextView)node.layout.findViewById(R.id.TextView_All_Direction),
+								 (TextView)node.layout.findViewById(R.id.TextView_All_From),
+								 (TextView)node.layout.findViewById(R.id.TextView_All_To),
+								 (TextView)node.layout.findViewById(R.id.TextView_All_Stop));		
+				node.layout.setOnClickListener(this);
+				node.layout.setOnLongClickListener(this);
+	    		registerForContextMenu(node.layout);
+	    		
+	    		node.setRefreshTime(conf.refresh_time);
+	    		
+	    		node.setActivity(this);
+	    		node.loadTime();
+	    		
+	    		Linear_Track.addView(node.layout);
+			}
+		}
+		else
+		{
+			Linear_Todo.setVisibility(LinearLayout.VISIBLE);
 		}
     }
 	

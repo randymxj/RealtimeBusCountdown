@@ -2,7 +2,6 @@ package com.randymxj.us.bus.countdown;
 
 import java.util.ArrayList;
 
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,7 +43,14 @@ public class DirectionNode
 	public void setButton( TextView t, TextView tf, TextView tt)
 	{
 		tv_text = t;
-		tv_text.setText("[" + name + "] " + title);
+		if( !name.equalsIgnoreCase("") && !name.equalsIgnoreCase(title) )
+		{
+			tv_text.setText("[" + name + "] " + title);
+		}
+		else
+		{
+			tv_text.setText(title);
+		}
 		
 		tv_text_from = tf;		
 		tv_text_to = tt;
