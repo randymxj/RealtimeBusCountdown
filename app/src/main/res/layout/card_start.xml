@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/card_padding_vertical"
+    android:paddingBottom="@dimen/card_padding_vertical"
+    android:paddingLeft="@dimen/card_padding_horizontal"
+    android:paddingRight="@dimen/card_padding_horizontal"
+    android:clipToPadding="false" >
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_content_bg" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/card_head_height"
+                android:background="@drawable/start_title"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorTitle"
+                    android:textSize="@dimen/item_textsize_title"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:text="Welcome to"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_padding_vertical"
+                    android:textColor="@color/textColorTitle"
+                    android:textSize="@dimen/item_textsize_title"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:text="Realtime Bus Countdown"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_padding_vertical"
+                    android:textColor="@color/textColorTitle"
+                    android:textSize="@dimen/item_textsize_content"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:text="Please press the 'plus' float button to start"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
